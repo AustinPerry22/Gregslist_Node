@@ -40,10 +40,11 @@ export class HouseController extends BaseController {
         }
     }
 
-    async updateHouse(request, response, next){
+    async updateHouse(request, response, next) {
         try {
             logger.log(request)
             const updatedHouse = await housesService.updateHouse(request.params.houseId, request.body)
+            response.send(updatedHouse)
         } catch (error) {
             next(error)
         }

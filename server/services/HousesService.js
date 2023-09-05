@@ -25,7 +25,7 @@ class HousesService {
     }
 
     async updateHouse(houseId, houseData) {
-        const updatedHouse = await dbContext.Houses.save(houseId, houseData)
+        const updatedHouse = await dbContext.Houses.findByIdAndUpdate(houseId, houseData)
         return updatedHouse
     }
 }
