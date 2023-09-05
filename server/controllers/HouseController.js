@@ -8,6 +8,7 @@ export class HouseController extends BaseController {
         this.router
             .post('', this.createHouse)
             .get('', this.getHouses)
+            .delete('/:houseId', this.deleteHouse)
     }
 
     async createHouse(request, response, next) {
@@ -23,6 +24,16 @@ export class HouseController extends BaseController {
             logger.log(request)
             const houses = await housesService.getHouses()
             response.send(houses)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async deleteHouse(request, response, next) {
+        try {
+            logger.log(request)
+            const message = await housesService.deleteHouse(request.params.houseId)
+            response.send(message)
         } catch (error) {
             next(error)
         }
