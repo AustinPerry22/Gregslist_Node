@@ -23,6 +23,11 @@ class HousesService {
         await houseToRemove.remove()
         return `removed the ${houseToRemove}`
     }
+
+    async updateHouse(houseId, houseData) {
+        const updatedHouse = await dbContext.Houses.save(houseId, houseData)
+        return updatedHouse
+    }
 }
 
 export const housesService = new HousesService()
